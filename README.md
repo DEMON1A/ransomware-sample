@@ -13,3 +13,9 @@ What I think we should do here is create an outside web server, generate random 
 
 ## Encrypion Extension
 `.enc` is a pretty lame extension, naming encrypted files `.rawrr` is pretty cool 
+
+## I ran the malware by mistake
+If the malware got executed on your system with the same HTTP server that's placed in the notify util right now, Contact me on twitter / email and I would send you the encryption key that came into my server, then you can use `decrypt.py` to get your files back
+
+## Disclaimer
+The malware in this project was written for education purposes only, I'm not responsible for anyne using it
